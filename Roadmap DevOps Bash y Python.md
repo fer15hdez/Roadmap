@@ -25,11 +25,11 @@ Este roadmap te lleva en unos 9 a 12 meses (6 a 8 horas por semana) de scripts b
 
 **Estructura estándar de cada nivel:** objetivo, prerrequisitos, conceptos con su caso DevOps, ejercicios (con solución de referencia después de cada uno), proyecto y criterios de avance.
 
-## Niveles 1 a 4: Bash
+## 🎯 Niveles 1 a 4: Bash
 
 Bash ocupa los primeros cuatro niveles (unas 14 semanas) porque es la base de todo lo que haces en contenedores, CI y servidores.
 
-### Nivel 1: Fundamentos de Bash (semanas 1 a 3)
+### 🎯 Nivel 1: Fundamentos de Bash (semanas 1 a 3)
 
 **Objetivo:** escribir scripts cortos, correctos y legibles que reciban parámetros y devuelvan exit codes significativos.
 
