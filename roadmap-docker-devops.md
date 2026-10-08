@@ -153,7 +153,7 @@ Memorizar: `run`, `ps`, `logs`, `exec`, `stop/rm`, `build`. Consultar cuando hag
 
 ---
 
-## Etapa 1 — Arquitectura interna de Docker
+## ✅ Etapa 1 — Arquitectura interna de Docker
 
 **Objetivo:** entender qué pasa realmente cuando ejecutas `docker run`, para poder razonar sobre fallos en lugar de solo repetir comandos.
 
@@ -215,8 +215,8 @@ Memorizar: `docker info`, `docker inspect`. Consultar: rutas exactas de `/proc` 
 **Prerequisitos:** Etapa 1 (para entender por qué el cache funciona por capas).
 
 **Conceptos:**
-- **Cada instrucción crea una capa.** El cache de build se invalida desde la primera instrucción que cambia hacia abajo — de ahí la regla de "poner lo que cambia menos arriba".
-- **Multi-stage builds**: usar una imagen "builder" con todo el toolchain (Maven/Gradle, Go compiler) y copiar solo el artefacto final a una imagen runtime mínima. Resuelve el problema de imágenes gigantes con herramientas de compilación innecesarias en producción.
+- ✅**Cada instrucción crea una capa.** El cache de build se invalida desde la primera instrucción que cambia hacia abajo — de ahí la regla de "poner lo que cambia menos arriba".
+- 🎯**Multi-stage builds**: usar una imagen "builder" con todo el toolchain (Maven/Gradle, Go compiler) y copiar solo el artefacto final a una imagen runtime mínima. Resuelve el problema de imágenes gigantes con herramientas de compilación innecesarias en producción.
 - **`.dockerignore`**: evita que contexto innecesario (`.git`, `node_modules`, `target/`) se envíe al daemon, acelerando el build y evitando invalidar cache por archivos irrelevantes.
 - **Build-time vs runtime**: `ARG` solo existe durante el build; `ENV` persiste en el contenedor final. Confundirlos es una fuga de secretos común (nunca metas secretos en `ARG`/`ENV` porque quedan en el historial de capas).
 - **BuildKit** (motor de build moderno, default desde Docker 23+): permite cache mounts (`--mount=type=cache`), montar secretos sin dejarlos en la imagen (`--mount=type=secret`), y builds paralelos de stages independientes.
