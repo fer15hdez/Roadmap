@@ -208,7 +208,7 @@ Memorizar: `docker info`, `docker inspect`. Consultar: rutas exactas de `/proc` 
 
 ---
 
-## Etapa 2 — Dockerfile avanzado y build
+## 🎯 Etapa 2 — Dockerfile avanzado y build
 
 **Objetivo:** escribir Dockerfiles de nivel profesional: pequeños, reproducibles, cacheables y seguros, para Java/Spring Boot y Go específicamente.
 
