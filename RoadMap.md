@@ -17,7 +17,7 @@
        - ✅Git: commits, branches, merge/rebase, pull requests, resolución de conflictos
        - 🎯Docker: Dockerfile, docker build/run/push, `volumes`, redes de contenedores, Docker Compose
        - 🎯GitHub `Actions` o GitLab CI: workflows básicos, triggers, jobs y steps
-       - `Bash` y Python básico: scripts de automatización, lectura de variables de entorno, manejo de archivos
+       - 🎯`Bash` y Python básico: scripts de automatización, lectura de variables de entorno, manejo de archivos
 
 ### Proyecto hands-on: 
   Tomar una aplicación web simple (puede ser un "Hello World" en Node.js o Python Flask), crear su Dockerfile, publicarla en Docker Hub, y armar un pipeline en GitHub Actions que corra los tests automáticamente y construya la imagen al hacer push a main.
