@@ -1,0 +1,662 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.w{font-family:var(--font-sans);color:var(--color-text-primary);max-width:860px;margin:0 auto;padding:1.5rem 1rem}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+.summary-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:1.75rem}
+.sum-card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:.85rem 1rem}
+.sum-label{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;font-weight:500}
+.sum-val{font-size:22px;font-weight:500}
+
+.level-block{margin-bottom:1.5rem}
+.level-header{display:flex;align-items:center;gap:10px;margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:.5px solid var(--color-border-tertiary)}
+.level-pill{font-size:11px;font-weight:500;padding:3px 10px;border-radius:var(--border-radius-md);text-transform:uppercase;letter-spacing:.06em}
+.level-name{font-size:15px;font-weight:500}
+.level-hrs{font-size:12px;color:var(--color-text-secondary);margin-left:auto}
+
+.mod-block{background:var(--color-background-primary);border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);margin-bottom:.75rem;overflow:hidden}
+.mod-top{display:flex;align-items:flex-start;gap:12px;padding:.9rem 1.1rem;cursor:pointer}
+.mod-top:hover{background:var(--color-background-secondary)}
+.mod-badge{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0;margin-top:1px}
+.mod-info{flex:1;min-width:0}
+.mod-title{font-size:14px;font-weight:500;margin-bottom:3px}
+.mod-sub{font-size:12px;color:var(--color-text-secondary);line-height:1.45}
+.mod-meta{display:flex;gap:8px;align-items:center;margin-top:5px;flex-wrap:wrap}
+.mtag{font-size:10px;padding:2px 7px;border-radius:var(--border-radius-md);font-weight:500}
+.mod-arr{font-size:14px;color:var(--color-text-secondary);flex-shrink:0;transition:transform .18s;margin-top:2px}
+.mod-arr.open{transform:rotate(90deg)}
+
+.mod-body{display:none;border-top:.5px solid var(--color-border-tertiary)}
+.mod-body.open{display:block}
+
+.sessions-table{width:100%;border-collapse:collapse}
+.sessions-table th{font-size:11px;font-weight:500;color:var(--color-text-secondary);text-align:left;padding:8px 12px;border-bottom:.5px solid var(--color-border-tertiary);text-transform:uppercase;letter-spacing:.05em}
+.sessions-table td{font-size:12px;padding:8px 12px;border-bottom:.5px solid var(--color-border-tertiary);vertical-align:top;color:var(--color-text-primary);line-height:1.5}
+.sessions-table tr:last-child td{border-bottom:none}
+.sessions-table tr:hover td{background:var(--color-background-secondary)}
+.sess-num{color:var(--color-text-secondary);font-weight:500;white-space:nowrap;min-width:36px}
+.sess-type{font-size:10px;padding:2px 7px;border-radius:var(--border-radius-md);font-weight:500;white-space:nowrap}
+.sess-hrs{color:var(--color-text-secondary);white-space:nowrap;text-align:right}
+.sess-name{font-weight:500}
+.sess-desc{font-size:11px;color:var(--color-text-secondary);margin-top:2px}
+
+.ask-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;font-size:12px;border:.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);background:none;color:var(--color-text-primary);cursor:pointer;font-family:var(--font-sans);margin-top:1rem;transition:background .1s}
+.ask-btn:hover{background:var(--color-background-secondary)}
+.btns-row{display:flex;gap:8px;flex-wrap:wrap;padding:.75rem 1.1rem;border-top:.5px solid var(--color-border-tertiary)}
+</style>
+
+<div class="w">
+<h2 class="sr-only">Temario completo del curso CI/CD para DevOps moderno — 8 módulos, 42 sesiones</h2>
+
+<div class="summary-row">
+  <div class="sum-card"><div class="sum-label">Módulos</div><div class="sum-val">8</div></div>
+  <div class="sum-card"><div class="sum-label">Sesiones</div><div class="sum-val">42</div></div>
+  <div class="sum-card"><div class="sum-label">Horas totales</div><div class="sum-val">~82h</div></div>
+  <div class="sum-card"><div class="sum-label">Niveles</div><div class="sum-val">4</div></div>
+</div>
+
+<!-- NIVEL 1 -->
+<div class="level-block">
+  <div class="level-header">
+    <span class="level-pill" style="background:#E1F5EE;color:#085041">Nivel 1</span>
+    <span class="level-name">Principiante</span>
+    <span class="level-hrs">~14 horas</span>
+  </div>
+
+  <!-- M1 -->
+  <div class="mod-block">
+    <div class="mod-top" onclick="tog(this)">
+      <div class="mod-badge" style="background:#E1F5EE;color:#085041">M1</div>
+      <div class="mod-info">
+        <div class="mod-title">Fundamentos de CI/CD y cultura DevOps</div>
+        <div class="mod-sub">Por qué CI/CD existe, historia, métricas DORA, anti-patterns y el modelo mental correcto.</div>
+        <div class="mod-meta">
+          <span class="mtag" style="background:#E1F5EE;color:#085041">6 sesiones</span>
+          <span class="mtag" style="background:var(--color-background-secondary);color:var(--color-text-secondary)">~8h</span>
+        </div>
+      </div>
+      <div class="mod-arr">›</div>
+    </div>
+    <div class="mod-body">
+      <table class="sessions-table">
+        <thead><tr><th style="width:44px">#</th><th>Sesión</th><th style="width:90px">Tipo</th><th style="width:50px">Horas</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="sess-num">1.1</td>
+            <td><div class="sess-name">Historia del software: del waterfall al DevOps</div><div class="sess-desc">Evolución de modelos de entrega. Por qué el ciclo largo de releases destruye equipos. El paper de Accelerate.</div></td>
+            <td><span class="sess-type" style="background:#E6F1FB;color:#0C447C">Teoría</span></td>
+            <td class="sess-hrs">1.5h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">1.2</td>
+            <td><div class="sess-name">CI, CD Delivery y CD Deployment — diferencias reales</div><div class="sess-desc">No son sinónimos. Cuándo usar cada nivel. Por qué muchas empresas tienen Delivery pero no Deployment.</div></td>
+            <td><span class="sess-type" style="background:#E6F1FB;color:#0C447C">Teoría</span></td>
+            <td class="sess-hrs">1h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">1.3</td>
+            <td><div class="sess-name">Las 4 métricas DORA y cómo medirlas</div><div class="sess-desc">Deployment Frequency, Lead Time, Change Failure Rate, MTTR. Cómo calcularlas en un proyecto real.</div></td>
+            <td><span class="sess-type" style="background:#E6F1FB;color:#0C447C">Teoría</span></td>
+            <td class="sess-hrs">1h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">1.4</td>
+            <td><div class="sess-name">Anti-patterns de CI/CD: los 8 más comunes</div><div class="sess-desc">Pipeline de 45min sin arreglar, tests flaky ignorados, deploy manual "de seguridad", secrets en YAML, etc.</div></td>
+            <td><span class="sess-type" style="background:#FAEEDA;color:#633806">Análisis</span></td>
+            <td class="sess-hrs">1h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">1.5</td>
+            <td><div class="sess-name">Práctica: mapear el flujo actual de un equipo</div><div class="sess-desc">Ejercicio de Value Stream Mapping aplicado a CI/CD. Identificar cuellos de botella y calcular DORA metrics.</div></td>
+            <td><span class="sess-type" style="background:#EAF3DE;color:#27500A">Práctica</span></td>
+            <td class="sess-hrs">1.5h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">1.6</td>
+            <td><div class="sess-name">Casos reales: Amazon, Netflix, Google — qué hicieron distinto</div><div class="sess-desc">Análisis de transformaciones reales. Lecciones aplicables a equipos pequeños. Monorepo vs multirepo.</div></td>
+            <td><span class="sess-type" style="background:#FAEEDA;color:#633806">Análisis</span></td>
+            <td class="sess-hrs">2h</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="btns-row">
+        <button class="ask-btn" onclick="sendPrompt('Explícame en profundidad las métricas DORA y cómo implementar su medición en un equipo real con GitLab')">Profundizar en DORA ↗</button>
+        <button class="ask-btn" onclick="sendPrompt('Dame los 8 anti-patterns de CI/CD más comunes con ejemplos reales y cómo solucionarlos')">Ver anti-patterns ↗</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- M2 -->
+  <div class="mod-block">
+    <div class="mod-top" onclick="tog(this)">
+      <div class="mod-badge" style="background:#E1F5EE;color:#085041">M2</div>
+      <div class="mod-info">
+        <div class="mod-title">Git avanzado aplicado a pipelines</div>
+        <div class="mod-sub">Branching strategies, trunk-based development, conventional commits, tags y cómo Git define el pipeline.</div>
+        <div class="mod-meta">
+          <span class="mtag" style="background:#E1F5EE;color:#085041">5 sesiones</span>
+          <span class="mtag" style="background:var(--color-background-secondary);color:var(--color-text-secondary)">~6h</span>
+        </div>
+      </div>
+      <div class="mod-arr">›</div>
+    </div>
+    <div class="mod-body">
+      <table class="sessions-table">
+        <thead><tr><th style="width:44px">#</th><th>Sesión</th><th style="width:90px">Tipo</th><th style="width:50px">Horas</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="sess-num">2.1</td>
+            <td><div class="sess-name">GitFlow vs Trunk-Based Development: análisis real</div><div class="sess-desc">Cuándo usar cada uno. Por qué GitFlow falla con CI/CD. Feature flags como habilitador de TBD.</div></td>
+            <td><span class="sess-type" style="background:#FAEEDA;color:#633806">Análisis</span></td>
+            <td class="sess-hrs">1.5h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">2.2</td>
+            <td><div class="sess-name">Conventional Commits y versionado semántico automático</div><div class="sess-desc">Especificación Conventional Commits. semantic-release. Generación automática de CHANGELOG y tags semver.</div></td>
+            <td><span class="sess-type" style="background:#E6F1FB;color:#0C447C">Teoría</span></td>
+            <td class="sess-hrs">1h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">2.3</td>
+            <td><div class="sess-name">Git hooks: pre-commit, commit-msg, pre-push</div><div class="sess-desc">Husky + commitlint + lint-staged. Validación local antes de que el pipeline lo vea. Seguridad contra secrets.</div></td>
+            <td><span class="sess-type" style="background:#EAF3DE;color:#27500A">Práctica</span></td>
+            <td class="sess-hrs">1h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">2.4</td>
+            <td><div class="sess-name">Tags, protected branches y pipeline triggers</div><div class="sess-desc">Cómo main, develop y tags v* disparan pipelines diferentes. Configuración en GitLab de ramas protegidas.</div></td>
+            <td><span class="sess-type" style="background:#E6F1FB;color:#0C447C">Teoría</span></td>
+            <td class="sess-hrs">1h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">2.5</td>
+            <td><div class="sess-name">Práctica: migrar repo de GitFlow a TBD + automated releases</div><div class="sess-desc">Ejercicio completo: reestructurar ramas, configurar commitlint, implementar semantic-release en el pipeline.</div></td>
+            <td><span class="sess-type" style="background:#EAF3DE;color:#27500A">Práctica</span></td>
+            <td class="sess-hrs">1.5h</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="btns-row">
+        <button class="ask-btn" onclick="sendPrompt('Dame un tutorial paso a paso para configurar semantic-release en un proyecto Node.js con GitLab CI')">Tutorial semantic-release ↗</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NIVEL 2 -->
+<div class="level-block">
+  <div class="level-header">
+    <span class="level-pill" style="background:#E6F1FB;color:#0C447C">Nivel 2</span>
+    <span class="level-name">Intermedio</span>
+    <span class="level-hrs">~34 horas</span>
+  </div>
+
+  <!-- M3 -->
+  <div class="mod-block">
+    <div class="mod-top" onclick="tog(this)">
+      <div class="mod-badge" style="background:#E6F1FB;color:#0C447C">M3</div>
+      <div class="mod-info">
+        <div class="mod-title">Docker en pipelines CI/CD</div>
+        <div class="mod-sub">Multi-stage builds, BuildKit, tagging semántico, registries privados y scanning de imágenes.</div>
+        <div class="mod-meta">
+          <span class="mtag" style="background:#E6F1FB;color:#0C447C">6 sesiones</span>
+          <span class="mtag" style="background:var(--color-background-secondary);color:var(--color-text-secondary)">~10h</span>
+        </div>
+      </div>
+      <div class="mod-arr">›</div>
+    </div>
+    <div class="mod-body">
+      <table class="sessions-table">
+        <thead><tr><th style="width:44px">#</th><th>Sesión</th><th style="width:90px">Tipo</th><th style="width:50px">Horas</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="sess-num">3.1</td>
+            <td><div class="sess-name">Dockerfile profesional: capas, caché y reproducibilidad</div><div class="sess-desc">Orden de instrucciones para maximizar caché. .dockerignore. ARGs para versiones. Reproducibilidad entre entornos.</div></td>
+            <td><span class="sess-type" style="background:#E6F1FB;color:#0C447C">Teoría</span></td>
+            <td class="sess-hrs">1.5h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">3.2</td>
+            <td><div class="sess-name">Multi-stage builds: separar build de runtime</div><div class="sess-desc">Stage de compilación vs imagen final. Distroless, Alpine, scratch. Reducción de superficie de ataque y tamaño.</div></td>
+            <td><span class="sess-type" style="background:#EAF3DE;color:#27500A">Práctica</span></td>
+            <td class="sess-hrs">2h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">3.3</td>
+            <td><div class="sess-name">BuildKit: caché avanzado y builds paralelos</div><div class="sess-desc">--cache-from y --cache-to con registry backend. Mount cache para package managers. Builds paralelos con targets.</div></td>
+            <td><span class="sess-type" style="background:#EAF3DE;color:#27500A">Práctica</span></td>
+            <td class="sess-hrs">1.5h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">3.4</td>
+            <td><div class="sess-name">Tagging semántico: estrategia completa</div><div class="sess-desc">Nunca :latest en prod. SHA corto + semver + latest-dev. Automatización del tagging en el pipeline. Immutable tags.</div></td>
+            <td><span class="sess-type" style="background:#E6F1FB;color:#0C447C">Teoría</span></td>
+            <td class="sess-hrs">1h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">3.5</td>
+            <td><div class="sess-name">Registries privados: GitLab, ECR, GCP AR</div><div class="sess-desc">Comparativa. Autenticación con service accounts. Políticas de retención. Cleanup automático de imágenes antiguas.</div></td>
+            <td><span class="sess-type" style="background:#FAEEDA;color:#633806">Análisis</span></td>
+            <td class="sess-hrs">1.5h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">3.6</td>
+            <td><div class="sess-name">Práctica: pipeline completo build → scan → push con Trivy</div><div class="sess-desc">Integrar Trivy en GitLab CI. Políticas de fallo por severidad. Excepciones documentadas. SBOM generation.</div></td>
+            <td><span class="sess-type" style="background:#EAF3DE;color:#27500A">Práctica</span></td>
+            <td class="sess-hrs">2.5h</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="btns-row">
+        <button class="ask-btn" onclick="sendPrompt('Dame un Dockerfile multi-stage optimizado para una aplicación Node.js con TypeScript, con etapa de build y runtime en distroless')">Dockerfile multi-stage Node.js ↗</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- M4 -->
+  <div class="mod-block">
+    <div class="mod-top" onclick="tog(this)">
+      <div class="mod-badge" style="background:#E6F1FB;color:#0C447C">M4</div>
+      <div class="mod-info">
+        <div class="mod-title">Diseño de pipelines CI/CD reales</div>
+        <div class="mod-sub">Anatomía del pipeline, stages, jobs, artefactos, paralelismo, testing y buenas prácticas de arquitectura.</div>
+        <div class="mod-meta">
+          <span class="mtag" style="background:#E6F1FB;color:#0C447C">6 sesiones</span>
+          <span class="mtag" style="background:var(--color-background-secondary);color:var(--color-text-secondary)">~12h</span>
+        </div>
+      </div>
+      <div class="mod-arr">›</div>
+    </div>
+    <div class="mod-body">
+      <table class="sessions-table">
+        <thead><tr><th style="width:44px">#</th><th>Sesión</th><th style="width:90px">Tipo</th><th style="width:50px">Horas</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="sess-num">4.1</td>
+            <td><div class="sess-name">Anatomía de un pipeline: stages, jobs, steps</div><div class="sess-desc">Jerarquía y ejecución. Paralelismo dentro del stage. Secuencialidad entre stages. Fail fast como principio guía.</div></td>
+            <td><span class="sess-type" style="background:#E6F1FB;color:#0C447C">Teoría</span></td>
+            <td class="sess-hrs">1.5h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">4.2</td>
+            <td><div class="sess-name">Testing en pipelines: unit, integration, smoke, e2e</div><div class="sess-desc">Pirámide de tests aplicada a CI. Cuándo ejecutar cada capa. Services de Docker en el pipeline para tests de integración.</div></td>
+            <td><span class="sess-type" style="background:#E6F1FB;color:#0C447C">Teoría</span></td>
+            <td class="sess-hrs">2h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">4.3</td>
+            <td><div class="sess-name">Artefactos, caché y dependencias entre jobs</div><div class="sess-desc">Diferencia entre cache y artifacts. Passing binaries entre stages. Evitar rebuilds. Expiración y retención.</div></td>
+            <td><span class="sess-type" style="background:#E6F1FB;color:#0C447C">Teoría</span></td>
+            <td class="sess-hrs">1.5h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">4.4</td>
+            <td><div class="sess-name">Environments, approvals y promotion gates</div><div class="sess-desc">dev → staging → production. Aprobaciones manuales. Variables por entorno. Rollback por ambiente.</div></td>
+            <td><span class="sess-type" style="background:#E6F1FB;color:#0C447C">Teoría</span></td>
+            <td class="sess-hrs">2h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">4.5</td>
+            <td><div class="sess-name">Optimización de pipelines: tiempo y coste</div><div class="sess-desc">Matrix jobs, DAGs, paralelismo inteligente. Profiling de pipelines. Target: pipeline completo en menos de 10 minutos.</div></td>
+            <td><span class="sess-type" style="background:#FAEEDA;color:#633806">Análisis</span></td>
+            <td class="sess-hrs">2h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">4.6</td>
+            <td><div class="sess-name">Práctica: diseñar y optimizar pipeline de una API real</div><div class="sess-desc">Tomar un pipeline lento, analizarlo, paralelizarlo y reducir su tiempo a la mitad. Benchmark before/after.</div></td>
+            <td><span class="sess-type" style="background:#EAF3DE;color:#27500A">Práctica</span></td>
+            <td class="sess-hrs">3h</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="btns-row">
+        <button class="ask-btn" onclick="sendPrompt('Explícame con ejemplos YAML cómo implementar matrix jobs en GitLab CI para correr tests en múltiples versiones de Node.js en paralelo')">Matrix jobs en GitLab CI ↗</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- M5 -->
+  <div class="mod-block">
+    <div class="mod-top" onclick="tog(this)">
+      <div class="mod-badge" style="background:#E6F1FB;color:#0C447C">M5</div>
+      <div class="mod-info">
+        <div class="mod-title">GitLab CI/CD en profundidad</div>
+        <div class="mod-sub">Runners, variables, templates reutilizables, rules, releases. Comparativa con Jenkins y GitHub Actions.</div>
+        <div class="mod-meta">
+          <span class="mtag" style="background:#E6F1FB;color:#0C447C">6 sesiones</span>
+          <span class="mtag" style="background:var(--color-background-secondary);color:var(--color-text-secondary)">~12h</span>
+        </div>
+      </div>
+      <div class="mod-arr">›</div>
+    </div>
+    <div class="mod-body">
+      <table class="sessions-table">
+        <thead><tr><th style="width:44px">#</th><th>Sesión</th><th style="width:90px">Tipo</th><th style="width:50px">Horas</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="sess-num">5.1</td>
+            <td><div class="sess-name">Arquitectura de GitLab CI: coordinator, runners, executors</div><div class="sess-desc">Cómo funciona internamente. Shared vs specific runners. Docker executor vs Shell vs Kubernetes executor.</div></td>
+            <td><span class="sess-type" style="background:#E6F1FB;color:#0C447C">Teoría</span></td>
+            <td class="sess-hrs">1.5h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">5.2</td>
+            <td><div class="sess-name">Variables, secrets y environments en GitLab</div><div class="sess-desc">Jerarquía de variables (instancia → grupo → proyecto). Variables protegidas y enmascaradas. CI/CD environments.</div></td>
+            <td><span class="sess-type" style="background:#E6F1FB;color:#0C447C">Teoría</span></td>
+            <td class="sess-hrs">1.5h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">5.3</td>
+            <td><div class="sess-name">include, extends y templates reutilizables</div><div class="sess-desc">Estandarizar pipelines en múltiples proyectos. include:project, include:remote. extends vs anchors YAML.</div></td>
+            <td><span class="sess-type" style="background:#EAF3DE;color:#27500A">Práctica</span></td>
+            <td class="sess-hrs">2h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">5.4</td>
+            <td><div class="sess-name">Rules, workflow y pipeline triggers avanzados</div><div class="sess-desc">rules moderno vs only/except deprecado. Triggers entre proyectos. Scheduled pipelines. Pipeline on MR events.</div></td>
+            <td><span class="sess-type" style="background:#EAF3DE;color:#27500A">Práctica</span></td>
+            <td class="sess-hrs">2h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">5.5</td>
+            <td><div class="sess-name">Jenkins vs GitHub Actions vs GitLab CI: cuándo usar cada uno</div><div class="sess-desc">Comparativa honesta. Casos de uso de cada herramienta. Migración de Jenkinsfile a .gitlab-ci.yml.</div></td>
+            <td><span class="sess-type" style="background:#FAEEDA;color:#633806">Análisis</span></td>
+            <td class="sess-hrs">2h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">5.6</td>
+            <td><div class="sess-name">Práctica: runner self-hosted + template library para la empresa</div><div class="sess-desc">Instalar GitLab Runner con Docker executor. Crear librería de templates CI reutilizables para 3 tipos de proyecto.</div></td>
+            <td><span class="sess-type" style="background:#EAF3DE;color:#27500A">Práctica</span></td>
+            <td class="sess-hrs">3h</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="btns-row">
+        <button class="ask-btn" onclick="sendPrompt('Dame un ejemplo completo de librería de templates GitLab CI reutilizables para proyectos Node.js, Python y Go con include:project')">Templates reutilizables GitLab ↗</button>
+        <button class="ask-btn" onclick="sendPrompt('Dame una comparativa detallada Jenkins vs GitLab CI vs GitHub Actions con tabla de características y casos de uso reales')">Comparativa herramientas CI ↗</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NIVEL 3 -->
+<div class="level-block">
+  <div class="level-header">
+    <span class="level-pill" style="background:#FAEEDA;color:#633806">Nivel 3</span>
+    <span class="level-name">Avanzado</span>
+    <span class="level-hrs">~24 horas</span>
+  </div>
+
+  <!-- M6 -->
+  <div class="mod-block">
+    <div class="mod-top" onclick="tog(this)">
+      <div class="mod-badge" style="background:#FAEEDA;color:#633806">M6</div>
+      <div class="mod-info">
+        <div class="mod-title">Kubernetes: deploy, rollout y rollback en CI/CD</div>
+        <div class="mod-sub">Deployments, probes, rolling updates, Canary, Blue/Green. Integración con pipelines CI/CD.</div>
+        <div class="mod-meta">
+          <span class="mtag" style="background:#FAEEDA;color:#633806">6 sesiones</span>
+          <span class="mtag" style="background:var(--color-background-secondary);color:var(--color-text-secondary)">~14h</span>
+        </div>
+      </div>
+      <div class="mod-arr">›</div>
+    </div>
+    <div class="mod-body">
+      <table class="sessions-table">
+        <thead><tr><th style="width:44px">#</th><th>Sesión</th><th style="width:90px">Tipo</th><th style="width:50px">Horas</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="sess-num">6.1</td>
+            <td><div class="sess-name">Kubernetes para CI/CD: los recursos que importan</div><div class="sess-desc">Deployment, Service, Ingress, ConfigMap, Secret, ServiceAccount, RBAC. Por qué no desplegar Pods directamente.</div></td>
+            <td><span class="sess-type" style="background:#E6F1FB;color:#0C447C">Teoría</span></td>
+            <td class="sess-hrs">2h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">6.2</td>
+            <td><div class="sess-name">Health probes: liveness, readiness, startup</div><div class="sess-desc">El error más caro en k8s: deploy sin readinessProbe. Cómo configurarlas correctamente. Impacto en rolling updates.</div></td>
+            <td><span class="sess-type" style="background:#E6F1FB;color:#0C447C">Teoría</span></td>
+            <td class="sess-hrs">1.5h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">6.3</td>
+            <td><div class="sess-name">Rolling Updates, rollback y revisionHistoryLimit</div><div class="sess-desc">maxSurge y maxUnavailable. kubectl rollout status/undo. Automatizar rollback basado en métricas. Revision history.</div></td>
+            <td><span class="sess-type" style="background:#EAF3DE;color:#27500A">Práctica</span></td>
+            <td class="sess-hrs">2h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">6.4</td>
+            <td><div class="sess-name">Despliegues Canary y Blue/Green en Kubernetes</div><div class="sess-desc">Canary manual con pesos en Ingress. Blue/Green con Service swap. Argo Rollouts para automación. Cuándo usar cada uno.</div></td>
+            <td><span class="sess-type" style="background:#E6F1FB;color:#0C447C">Teoría</span></td>
+            <td class="sess-hrs">2.5h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">6.5</td>
+            <td><div class="sess-name">Secrets en Kubernetes: del secreto al External Secrets Operator</div><div class="sess-desc">Por qué los Secrets de k8s no son seguros. Vault + Agent Injector. External Secrets Operator + AWS/GCP Secrets Manager.</div></td>
+            <td><span class="sess-type" style="background:#E6F1FB;color:#0C447C">Teoría</span></td>
+            <td class="sess-hrs">2h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">6.6</td>
+            <td><div class="sess-name">Práctica: pipeline completo con deploy en k3d</div><div class="sess-desc">Pipeline GitLab CI que hace build, push y actualiza el Deployment en k3d local. Smoke test post-deploy. Rollback simulado.</div></td>
+            <td><span class="sess-type" style="background:#EAF3DE;color:#27500A">Práctica</span></td>
+            <td class="sess-hrs">4h</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="btns-row">
+        <button class="ask-btn" onclick="sendPrompt('Dame un ejemplo completo de despliegue Canary en Kubernetes con Ingress NGINX y cómo automatizarlo desde un pipeline GitLab CI')">Canary con NGINX Ingress ↗</button>
+        <button class="ask-btn" onclick="sendPrompt('Explícame paso a paso cómo configurar External Secrets Operator con AWS Secrets Manager en Kubernetes')">External Secrets Operator ↗</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- M7 -->
+  <div class="mod-block">
+    <div class="mod-top" onclick="tog(this)">
+      <div class="mod-badge" style="background:#FAEEDA;color:#633806">M7</div>
+      <div class="mod-info">
+        <div class="mod-title">GitOps con ArgoCD</div>
+        <div class="mod-sub">El paradigma GitOps, separación app/config repo, ArgoCD Applications, sync policies, rollback y multi-entorno.</div>
+        <div class="mod-meta">
+          <span class="mtag" style="background:#FAEEDA;color:#633806">5 sesiones</span>
+          <span class="mtag" style="background:var(--color-background-secondary);color:var(--color-text-secondary)">~10h</span>
+        </div>
+      </div>
+      <div class="mod-arr">›</div>
+    </div>
+    <div class="mod-body">
+      <table class="sessions-table">
+        <thead><tr><th style="width:44px">#</th><th>Sesión</th><th style="width:90px">Tipo</th><th style="width:50px">Horas</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="sess-num">7.1</td>
+            <td><div class="sess-name">GitOps: principios, beneficios y limitaciones</div><div class="sess-desc">Los 4 principios GitOps de OpenGitOps. Por qué Git como fuente de verdad. Qué NO encaja en GitOps (state externo, datos).</div></td>
+            <td><span class="sess-type" style="background:#E6F1FB;color:#0C447C">Teoría</span></td>
+            <td class="sess-hrs">1.5h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">7.2</td>
+            <td><div class="sess-name">ArgoCD: arquitectura interna y componentes</div><div class="sess-desc">Application Controller, Repo Server, API Server, Dex. Application vs AppProject. RBAC en ArgoCD. Self-heal explicado.</div></td>
+            <td><span class="sess-type" style="background:#E6F1FB;color:#0C447C">Teoría</span></td>
+            <td class="sess-hrs">2h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">7.3</td>
+            <td><div class="sess-name">App of Apps pattern y gestión multi-entorno</div><div class="sess-desc">Cómo gestionar 20+ aplicaciones con una sola ArgoCD Application raíz. Kustomize overlays por entorno. Helm + ArgoCD.</div></td>
+            <td><span class="sess-type" style="background:#E6F1FB;color:#0C447C">Teoría</span></td>
+            <td class="sess-hrs">2h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">7.4</td>
+            <td><div class="sess-name">Rollback GitOps: git revert como mecanismo de restauración</div><div class="sess-desc">Por qué kubectl rollout undo es un anti-pattern en GitOps. El proceso correcto: revert + PR + merge + sync.</div></td>
+            <td><span class="sess-type" style="background:#FAEEDA;color:#633806">Análisis</span></td>
+            <td class="sess-hrs">1.5h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">7.5</td>
+            <td><div class="sess-name">Práctica: flujo CI→GitOps completo end-to-end</div><div class="sess-desc">Pipeline actualiza image tag en config repo → ArgoCD sincroniza → rollback con git revert → Argo Rollouts con análisis.</div></td>
+            <td><span class="sess-type" style="background:#EAF3DE;color:#27500A">Práctica</span></td>
+            <td class="sess-hrs">3h</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="btns-row">
+        <button class="ask-btn" onclick="sendPrompt('Dame el YAML completo de una ArgoCD Application con App of Apps pattern para gestionar staging y production con Kustomize')">App of Apps YAML ↗</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NIVEL 4 -->
+<div class="level-block">
+  <div class="level-header">
+    <span class="level-pill" style="background:#FCEBEB;color:#791F1F">Nivel 4</span>
+    <span class="level-name">Experto</span>
+    <span class="level-hrs">~20 horas</span>
+  </div>
+
+  <!-- M8 -->
+  <div class="mod-block">
+    <div class="mod-top" onclick="tog(this)">
+      <div class="mod-badge" style="background:#FCEBEB;color:#791F1F">M8</div>
+      <div class="mod-info">
+        <div class="mod-title">DevSecOps: seguridad integrada en el pipeline</div>
+        <div class="mod-sub">SAST, DAST, dependency scanning, secrets management, container signing y observabilidad de pipelines.</div>
+        <div class="mod-meta">
+          <span class="mtag" style="background:#FCEBEB;color:#791F1F">8 sesiones</span>
+          <span class="mtag" style="background:var(--color-background-secondary);color:var(--color-text-secondary)">~10h</span>
+        </div>
+      </div>
+      <div class="mod-arr">›</div>
+    </div>
+    <div class="mod-body">
+      <table class="sessions-table">
+        <thead><tr><th style="width:44px">#</th><th>Sesión</th><th style="width:90px">Tipo</th><th style="width:50px">Horas</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="sess-num">8.1</td>
+            <td><div class="sess-name">DevSecOps: shift left y por qué la seguridad no puede ser el último stage</div><div class="sess-desc">Coste de bugs de seguridad según fase. Modelo de amenazas (threat modeling) aplicado a pipelines. OWASP Top 10 en CI.</div></td>
+            <td><span class="sess-type" style="background:#E6F1FB;color:#0C447C">Teoría</span></td>
+            <td class="sess-hrs">1h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">8.2</td>
+            <td><div class="sess-name">SAST con Semgrep: reglas custom y políticas de bloqueo</div><div class="sess-desc">Semgrep en GitLab CI. Escribir reglas para detectar patrones propios del codebase. Baseline de hallazgos. Gestión de falsos positivos.</div></td>
+            <td><span class="sess-type" style="background:#EAF3DE;color:#27500A">Práctica</span></td>
+            <td class="sess-hrs">1.5h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">8.3</td>
+            <td><div class="sess-name">Dependency scanning: SCA y gestión de CVEs</div><div class="sess-desc">GitLab Dependency Scanning nativo. Snyk vs OWASP Dependency-Check. Política: bloquear vs alertar. Renovate/Dependabot.</div></td>
+            <td><span class="sess-type" style="background:#EAF3DE;color:#27500A">Práctica</span></td>
+            <td class="sess-hrs">1h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">8.4</td>
+            <td><div class="sess-name">DAST con OWASP ZAP en el pipeline de staging</div><div class="sess-desc">ZAP en modo CI contra entorno de staging. Configuración para evitar false positives masivos. Integración de resultados.</div></td>
+            <td><span class="sess-type" style="background:#EAF3DE;color:#27500A">Práctica</span></td>
+            <td class="sess-hrs">1.5h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">8.5</td>
+            <td><div class="sess-name">Gestión de secrets: del CI variable a Vault</div><div class="sess-desc">Niveles de madurez. GitLeaks para secret scanning histórico. HashiCorp Vault con AppRole. External Secrets en k8s.</div></td>
+            <td><span class="sess-type" style="background:#E6F1FB;color:#0C447C">Teoría</span></td>
+            <td class="sess-hrs">1.5h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">8.6</td>
+            <td><div class="sess-name">Container signing con Cosign y policy enforcement con Kyverno</div><div class="sess-desc">Firmar imágenes en CI con Cosign. Keyless signing con Sigstore. Policy en Kubernetes que rechaza imágenes sin firma.</div></td>
+            <td><span class="sess-type" style="background:#EAF3DE;color:#27500A">Práctica</span></td>
+            <td class="sess-hrs">1.5h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">8.7</td>
+            <td><div class="sess-name">Observabilidad de pipelines: métricas, logs y alertas</div><div class="sess-desc">OpenTelemetry para tracing de pipelines. Métricas DORA desde GitLab API hacia Grafana. Alertas de pipeline degradado.</div></td>
+            <td><span class="sess-type" style="background:#E6F1FB;color:#0C447C">Teoría</span></td>
+            <td class="sess-hrs">1h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">8.8</td>
+            <td><div class="sess-name">Proyecto final: pipeline enterprise completo y seguro</div><div class="sess-desc">Integrar todos los módulos: TBD + GitLab CI + Docker + k8s + ArgoCD + SAST + DAST + Cosign + observabilidad. Presentación y review.</div></td>
+            <td><span class="sess-type" style="background:#EAF3DE;color:#27500A">Proyecto</span></td>
+            <td class="sess-hrs">10h</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="btns-row">
+        <button class="ask-btn" onclick="sendPrompt('Dame un pipeline GitLab CI completo con SAST Semgrep, dependency scanning, Trivy container scan y Cosign signing integrados')">Pipeline DevSecOps completo ↗</button>
+        <button class="ask-btn" onclick="sendPrompt('Explícame cómo configurar Kyverno para rechazar imágenes Docker sin firma Cosign en Kubernetes con policy YAML incluido')">Kyverno + Cosign YAML ↗</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAB -->
+  <div class="mod-block">
+    <div class="mod-top" onclick="tog(this)">
+      <div class="mod-badge" style="background:#FCEBEB;color:#791F1F">LAB</div>
+      <div class="mod-info">
+        <div class="mod-title">Laboratorio local: entorno completo en máquina limitada</div>
+        <div class="mod-sub">k3d + GitLab Runner + ArgoCD + Registry local. Flujo CI/CD end-to-end en tu propia máquina.</div>
+        <div class="mod-meta">
+          <span class="mtag" style="background:#FCEBEB;color:#791F1F">5 escenarios</span>
+          <span class="mtag" style="background:var(--color-background-secondary);color:var(--color-text-secondary)">~10h</span>
+        </div>
+      </div>
+      <div class="mod-arr">›</div>
+    </div>
+    <div class="mod-body">
+      <table class="sessions-table">
+        <thead><tr><th style="width:44px">#</th><th>Sesión / Escenario</th><th style="width:90px">Tipo</th><th style="width:50px">Horas</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="sess-num">L.1</td>
+            <td><div class="sess-name">Montaje del entorno: k3d + registry + ArgoCD + Runner</div><div class="sess-desc">Instalación paso a paso. k3d con registry local integrado. ArgoCD en namespace dedicado. Runner con Docker executor.</div></td>
+            <td><span class="sess-type" style="background:#EAF3DE;color:#27500A">Setup</span></td>
+            <td class="sess-hrs">2h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">L.2</td>
+            <td><div class="sess-name">Primer pipeline end-to-end con microservicio de ejemplo</div><div class="sess-desc">App Express.js con /health y /api/items. Pipeline completo: lint → test → build → push → ArgoCD sync → smoke test.</div></td>
+            <td><span class="sess-type" style="background:#EAF3DE;color:#27500A">Práctica</span></td>
+            <td class="sess-hrs">2h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">L.3</td>
+            <td><div class="sess-name">Escenario: fallo de pipeline y análisis de causa raíz</div><div class="sess-desc">Introducir fallo deliberado. Analizar logs del runner. Corregir. Medir MTTR. Añadir test que previene la regresión.</div></td>
+            <td><span class="sess-type" style="background:#FAEEDA;color:#633806">Escenario</span></td>
+            <td class="sess-hrs">1.5h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">L.4</td>
+            <td><div class="sess-name">Escenario: rollback GitOps completo</div><div class="sess-desc">Deploy de imagen rota → pods crashean → git revert en config repo → ArgoCD sincroniza → cluster restaurado. Cronometrado.</div></td>
+            <td><span class="sess-type" style="background:#FAEEDA;color:#633806">Escenario</span></td>
+            <td class="sess-hrs">1.5h</td>
+          </tr>
+          <tr>
+            <td class="sess-num">L.5</td>
+            <td><div class="sess-name">Escenario: despliegue progresivo Canary con Argo Rollouts</div><div class="sess-desc">Instalar Argo Rollouts. Migrar Deployment a Rollout. Configurar Canary 10→25→50→100%. Observar, pausar, promover.</div></td>
+            <td><span class="sess-type" style="background:#FAEEDA;color:#633806">Escenario</span></td>
+            <td class="sess-hrs">3h</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="btns-row">
+        <button class="ask-btn" onclick="sendPrompt('Dame el paso a paso completo y detallado para montar el laboratorio CI/CD local: k3d, registry, ArgoCD y GitLab Runner desde cero')">Guía completa del laboratorio ↗</button>
+        <button class="ask-btn" onclick="sendPrompt('Dame el YAML completo de un Argo Rollout con estrategia Canary para el laboratorio local, con 4 pasos y pausa manual entre ellos')">YAML Argo Rollouts ↗</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+function tog(header){
+  var body=header.nextElementSibling;
+  var arr=header.querySelector('.mod-arr');
+  var open=body.classList.contains('open');
+  body.classList.toggle('open',!open);
+  arr.classList.toggle('open',!open);
+}
+</script>

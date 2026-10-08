@@ -1,0 +1,1250 @@
+
+<style>
+  :root {
+    --accent: #1D9E75;
+    --accent2: #185FA5;
+    --accent3: #BA7517;
+    --accent4: #A32D2D;
+    --mono: 'Courier New', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: transparent; }
+
+  .curso-wrap {
+    font-family: var(--font-sans);
+    color: var(--color-text-primary);
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem;
+  }
+
+  .hero {
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #1D9E75, #185FA5, #BA7517);
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--color-background-info);
+    color: var(--color-text-info);
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: var(--border-radius-md);
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-size: 26px;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+  .hero p {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    max-width: 640px;
+  }
+  .meta-row {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .meta-item {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .meta-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .nav-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    padding-bottom: 0;
+  }
+  .tab-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+    border: none;
+    background: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -0.5px;
+    transition: color 0.15s;
+    font-family: var(--font-sans);
+    font-weight: 400;
+  }
+  .tab-btn:hover { color: var(--color-text-primary); }
+  .tab-btn.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    font-weight: 500;
+  }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .module-card {
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+  .module-header {
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    transition: background 0.1s;
+  }
+  .module-header:hover { background: var(--color-background-secondary); }
+  .module-num {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    font-weight: 500;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .module-title-block { flex: 1; }
+  .module-level {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+  }
+  .module-title {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .module-desc {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+  .module-arrow {
+    font-size: 16px;
+    color: var(--color-text-secondary);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+  .module-arrow.open { transform: rotate(90deg); }
+
+  .module-body {
+    display: none;
+    padding: 0 1.25rem 1.25rem;
+    border-top: 0.5px solid var(--color-border-tertiary);
+  }
+  .module-body.open { display: block; }
+
+  .section-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    margin: 1rem 0 0.5rem;
+  }
+  .concept-list, .practice-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .concept-list li, .practice-list li {
+    font-size: 13px;
+    color: var(--color-text-primary);
+    padding: 6px 10px;
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-md);
+    border-left: 2px solid var(--color-border-secondary);
+    line-height: 1.5;
+  }
+  .concept-list li strong, .practice-list li strong {
+    font-weight: 500;
+  }
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 0.5rem;
+  }
+  .tag {
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: var(--border-radius-md);
+    font-weight: 500;
+  }
+  .tag-tool { background: var(--color-background-info); color: var(--color-text-info); }
+  .tag-warn { background: var(--color-background-warning); color: var(--color-text-warning); }
+  .tag-ok { background: var(--color-background-success); color: var(--color-text-success); }
+  .tag-err { background: var(--color-background-danger); color: var(--color-text-danger); }
+
+  .duration-badge {
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: var(--border-radius-md);
+    background: var(--color-background-secondary);
+    color: var(--color-text-secondary);
+    border: 0.5px solid var(--color-border-tertiary);
+    font-weight: 500;
+  }
+
+  .code-block {
+    background: #0d1117;
+    border-radius: var(--border-radius-md);
+    padding: 1rem;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.7;
+    overflow-x: auto;
+    color: #e6edf3;
+    margin-top: 0.5rem;
+    border: 0.5px solid #30363d;
+  }
+  .code-block .c-green { color: #3fb950; }
+  .code-block .c-blue { color: #79c0ff; }
+  .code-block .c-orange { color: #ffa657; }
+  .code-block .c-yellow { color: #e3b341; }
+  .code-block .c-pink { color: #ff7b72; }
+  .code-block .c-gray { color: #8b949e; }
+  .code-block .c-purple { color: #d2a8ff; }
+  .code-block .c-teal { color: #39d353; }
+
+  .lab-section {
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .lab-title {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .step-list {
+    counter-reset: steps;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .step-list li {
+    counter-increment: steps;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .step-list li::before {
+    content: counter(steps);
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--color-background-info);
+    color: var(--color-text-info);
+    font-size: 11px;
+    font-weight: 500;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .arch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+    margin-top: 0.75rem;
+  }
+  .arch-card {
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-md);
+    padding: 0.75rem;
+  }
+  .arch-card-title {
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .arch-card-desc {
+    font-size: 11px;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+
+  .flow-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin: 0.75rem 0;
+  }
+  .flow-box {
+    padding: 6px 12px;
+    border-radius: var(--border-radius-md);
+    font-size: 12px;
+    font-weight: 500;
+    border: 0.5px solid var(--color-border-secondary);
+    background: var(--color-background-primary);
+    white-space: nowrap;
+  }
+  .flow-arrow {
+    color: var(--color-text-secondary);
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .warn-box {
+    background: var(--color-background-warning);
+    border: 0.5px solid var(--color-border-warning);
+    border-radius: var(--border-radius-md);
+    padding: 0.75rem 1rem;
+    font-size: 13px;
+    color: var(--color-text-warning);
+    margin-top: 0.75rem;
+    line-height: 1.5;
+  }
+  .ok-box {
+    background: var(--color-background-success);
+    border: 0.5px solid var(--color-border-success);
+    border-radius: var(--border-radius-md);
+    padding: 0.75rem 1rem;
+    font-size: 13px;
+    color: var(--color-text-success);
+    margin-top: 0.75rem;
+    line-height: 1.5;
+  }
+  .info-box {
+    background: var(--color-background-info);
+    border: 0.5px solid var(--color-border-info);
+    border-radius: var(--border-radius-md);
+    padding: 0.75rem 1rem;
+    font-size: 13px;
+    color: var(--color-text-info);
+    margin-top: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .compare-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    margin-top: 0.75rem;
+  }
+  .compare-card {
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-md);
+    padding: 0.75rem;
+  }
+  .compare-card.featured {
+    border: 2px solid var(--color-border-info);
+  }
+  .compare-card-head {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .compare-card-sub {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    margin-bottom: 8px;
+  }
+  .compare-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .compare-list li {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .compare-list li::before {
+    content: '•';
+    position: absolute;
+    left: 4px;
+    color: var(--color-text-secondary);
+  }
+
+  .index-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 10px;
+  }
+  .index-card {
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-md);
+    padding: 0.75rem 1rem;
+  }
+  .index-level {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .index-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .index-items li {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    padding: 3px 0;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    line-height: 1.4;
+  }
+  .index-items li:last-child { border-bottom: none; }
+
+  .ask-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    font-size: 13px;
+    border: 0.5px solid var(--color-border-secondary);
+    border-radius: var(--border-radius-md);
+    background: none;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    font-family: var(--font-sans);
+    margin-top: 1rem;
+    transition: background 0.1s;
+  }
+  .ask-btn:hover { background: var(--color-background-secondary); }
+</style>
+
+<div class="curso-wrap">
+  <h2 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Curso completo de CI/CD para DevOps moderno — módulos, laboratorio y pipelines</h2>
+
+  <div class="hero">
+    <div class="hero-badge">Programa técnico</div>
+    <h1>CI/CD para DevOps Moderno</h1>
+    <p>Desde fundamentos hasta GitOps avanzado. Kubernetes, ArgoCD, GitLab CI, DevSecOps y laboratorio local completo con recursos limitados.</p>
+    <div class="meta-row">
+      <div class="meta-item"><div class="meta-dot" style="background:#1D9E75"></div>8 módulos progresivos</div>
+      <div class="meta-item"><div class="meta-dot" style="background:#185FA5"></div>~80 horas estimadas</div>
+      <div class="meta-item"><div class="meta-dot" style="background:#BA7517"></div>Laboratorio local incluido</div>
+      <div class="meta-item"><div class="meta-dot" style="background:#A32D2D"></div>Pipelines YAML reales</div>
+    </div>
+  </div>
+
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="switchTab('indice')">Índice</button>
+    <button class="tab-btn" onclick="switchTab('modulos')">Módulos</button>
+    <button class="tab-btn" onclick="switchTab('lab')">Laboratorio</button>
+    <button class="tab-btn" onclick="switchTab('pipelines')">Pipelines YAML</button>
+    <button class="tab-btn" onclick="switchTab('herramientas')">Herramientas</button>
+  </div>
+
+  <!-- ÍNDICE -->
+  <div id="tab-indice" class="tab-panel active">
+    <div class="index-grid">
+      <div class="index-card">
+        <div class="index-level" style="color:#1D9E75">Nivel 1 — Principiante</div>
+        <ul class="index-items">
+          <li>M1 · Fundamentos de CI/CD y DevOps</li>
+          <li>M2 · Git avanzado aplicado a pipelines</li>
+        </ul>
+      </div>
+      <div class="index-card">
+        <div class="index-level" style="color:#185FA5">Nivel 2 — Intermedio</div>
+        <ul class="index-items">
+          <li>M3 · Docker: build, tagging, registries</li>
+          <li>M4 · Diseño de pipelines CI/CD reales</li>
+          <li>M5 · GitLab CI/CD en profundidad</li>
+        </ul>
+      </div>
+      <div class="index-card">
+        <div class="index-level" style="color:#BA7517">Nivel 3 — Avanzado</div>
+        <ul class="index-items">
+          <li>M6 · Kubernetes: deploy, rollout, rollback</li>
+          <li>M7 · GitOps con ArgoCD</li>
+        </ul>
+      </div>
+      <div class="index-card">
+        <div class="index-level" style="color:#A32D2D">Nivel 4 — Experto</div>
+        <ul class="index-items">
+          <li>M8 · DevSecOps: SAST, DAST, secrets</li>
+          <li>Laboratorio local completo</li>
+          <li>Despliegues progresivos (Canary, Blue/Green)</li>
+          <li>Observabilidad en pipelines</li>
+        </ul>
+      </div>
+    </div>
+    <button class="ask-btn" onclick="sendPrompt('Dame el temario completo del curso CI/CD con todas las sesiones de cada módulo detalladas')">Ver temario expandido ↗</button>
+  </div>
+
+  <!-- MÓDULOS -->
+  <div id="tab-modulos" class="tab-panel">
+
+    <!-- M1 -->
+    <div class="module-card">
+      <div class="module-header" onclick="toggleModule(this)">
+        <div class="module-num" style="background:#E1F5EE; color:#0F6E56">M1</div>
+        <div class="module-title-block">
+          <div class="module-level" style="color:#1D9E75">Principiante · ~8h</div>
+          <div class="module-title">Fundamentos de CI/CD y cultura DevOps</div>
+          <div class="module-desc">Por qué CI/CD existe, qué problemas resuelve, qué destruye si se implementa mal.</div>
+        </div>
+        <div class="module-arrow">›</div>
+      </div>
+      <div class="module-body">
+        <div class="section-label">Objetivos</div>
+        <ul class="concept-list">
+          <li>Entender qué es CI, CD (Delivery) y CD (Deployment) y sus diferencias reales</li>
+          <li>Identificar anti-patterns de CI/CD en equipos reales</li>
+          <li>Comprender el modelo DORA y sus 4 métricas clave</li>
+        </ul>
+        <div class="section-label">Conceptos teóricos en profundidad</div>
+        <ul class="concept-list">
+          <li><strong>CI — Continuous Integration:</strong> La idea central no es "correr tests automáticamente". Es que los desarrolladores integran código al trunk <em>varias veces al día</em>, detectando conflictos en minutos, no en días. El costo de integración crece exponencialmente con el tiempo. Fundamento: trabajo de Kent Beck y Martin Fowler (Extreme Programming).</li>
+          <li><strong>CD Delivery vs Deployment:</strong> Delivery = el artefacto <em>puede</em> desplegarse en producción en cualquier momento. Deployment = se despliega automáticamente. La diferencia es una decisión de negocio, no técnica. Muchas empresas tienen Delivery pero no Deployment por razones de compliance.</li>
+          <li><strong>El problema del "integration hell":</strong> Sin CI, cada rama larga acumula divergencia. Al mergear, horas o días de conflictos. CI elimina esto integrando continuamente. Ejemplo real: Google integra en monorepo, todos trabajan sobre main.</li>
+          <li><strong>DORA Metrics:</strong> Deployment Frequency, Lead Time for Changes, Change Failure Rate, Mean Time to Recovery. Son el estándar para medir madurez DevOps. Elite performers despliegan múltiples veces al día, con MTTR bajo 1 hora.</li>
+          <li><strong>Anti-patterns críticos:</strong> (1) Pipelines de 45 minutos que nadie arregla cuando fallan. (2) No correr el pipeline en cada commit, solo en PRs. (3) Tests que pasan siempre (falsos positivos). (4) Deployments manuales como paso "de seguridad".</li>
+        </ul>
+        <div class="section-label">Casos de uso reales</div>
+        <ul class="practice-list">
+          <li><strong>Amazon (2011):</strong> pasó de despliegues de semanas a desplegar cada 11.6 segundos. El driver no fue tecnología, fue cultura: equipos con ownership completo de sus servicios.</li>
+          <li><strong>Equipo de 5 personas sin CI/CD:</strong> el "release day" dura 8 horas, hay hotfixes en producción, nadie sabe qué versión corre. Con CI/CD: release en 15 minutos, automático, trazable.</li>
+        </ul>
+        <div class="section-label">Ejercicios prácticos</div>
+        <ul class="practice-list">
+          <li>Mapear el flujo actual de tu equipo (o un flujo hipotético) e identificar cuánto tarda cada fase desde commit hasta producción</li>
+          <li>Calcular las DORA Metrics de un proyecto open source real usando su historial de GitHub</li>
+          <li>Documentar 3 anti-patterns que has visto (o puedes imaginar) y proponer soluciones</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag tag-tool">DevOps</span>
+          <span class="tag tag-tool">DORA</span>
+          <span class="tag tag-warn">Anti-patterns</span>
+          <span class="tag tag-ok">Fundamentos</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- M2 -->
+    <div class="module-card">
+      <div class="module-header" onclick="toggleModule(this)">
+        <div class="module-num" style="background:#E1F5EE; color:#0F6E56">M2</div>
+        <div class="module-title-block">
+          <div class="module-level" style="color:#1D9E75">Principiante · ~6h</div>
+          <div class="module-title">Git avanzado aplicado a pipelines</div>
+          <div class="module-desc">Estrategias de branching, trunk-based development, tags, hooks y cómo Git define el comportamiento del pipeline.</div>
+        </div>
+        <div class="module-arrow">›</div>
+      </div>
+      <div class="module-body">
+        <div class="section-label">Conceptos teóricos en profundidad</div>
+        <ul class="concept-list">
+          <li><strong>Trunk-Based Development (TBD):</strong> Todos trabajan sobre main/trunk. Feature flags para código incompleto. Ramas de vida corta (&lt;1 día). Es el modelo que usan Google, Meta, Amazon. El problema de GitFlow en CI/CD: ramas largas = integración cara.</li>
+          <li><strong>GitFlow vs TBD:</strong> GitFlow tiene sentido para librerías con múltiples versiones soportadas. Para aplicaciones web/servicios, TBD es superior porque reduce el costo de integración.</li>
+          <li><strong>Conventional Commits:</strong> Formato estándar (feat:, fix:, chore:) que los pipelines pueden leer para generar changelogs automáticos, versionar con semver, y decidir qué tipo de release hacer.</li>
+          <li><strong>Git tags y versioning:</strong> Los pipelines se disparan con tags (v1.2.3) para releases. La diferencia entre annotated tags (para releases) y lightweight tags (para marcadores internos).</li>
+          <li><strong>Protected branches y pipeline triggers:</strong> Cómo configurar qué ramas disparan qué jobs. main dispara deploy a producción. develop dispara staging. feature/* solo unit tests.</li>
+        </ul>
+        <div class="section-label">Ejercicios prácticos</div>
+        <ul class="practice-list">
+          <li>Convertir un repositorio con GitFlow a TBD: definir estrategia de feature flags</li>
+          <li>Configurar conventional commits con commitlint como hook pre-commit</li>
+          <li>Crear un script que lea los commits desde el último tag y genere un CHANGELOG.md automático</li>
+        </ul>
+        <div class="warn-box">Error común: hacer merge de una rama de 3 semanas directamente a main sin squash. El pipeline falla por conflictos que nadie entiende. Solución: ramas de vida máxima 2 días y feature flags para código incompleto.</div>
+        <div class="tag-row">
+          <span class="tag tag-tool">Git</span>
+          <span class="tag tag-tool">TBD</span>
+          <span class="tag tag-ok">GitFlow</span>
+          <span class="tag tag-warn">Branching</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- M3 -->
+    <div class="module-card">
+      <div class="module-header" onclick="toggleModule(this)">
+        <div class="module-num" style="background:#E6F1FB; color:#0C447C">M3</div>
+        <div class="module-title-block">
+          <div class="module-level" style="color:#185FA5">Intermedio · ~10h</div>
+          <div class="module-title">Docker en pipelines CI/CD</div>
+          <div class="module-desc">Build reproducible, multi-stage builds, tagging semántico, registries privados y seguridad de imágenes.</div>
+        </div>
+        <div class="module-arrow">›</div>
+      </div>
+      <div class="module-body">
+        <div class="section-label">Conceptos teóricos en profundidad</div>
+        <ul class="concept-list">
+          <li><strong>Multi-stage builds:</strong> La razón de existir es separar el entorno de build del artefacto final. Stage 1: imagen con compilador + dependencias. Stage 2: imagen mínima (distroless, alpine) con solo el binario. Resultado: imagen de producción 10x más pequeña, sin herramientas de build.</li>
+          <li><strong>Tagging semántico en CI:</strong> Nunca usar :latest en producción. Estrategia: commitsha corto para trazabilidad (myapp:abc1234), semver para releases (myapp:v1.2.3), latest solo para desarrollo local. El pipeline debe etiquetar con al menos sha + versión.</li>
+          <li><strong>BuildKit y caché:</strong> --cache-from para reutilizar capas entre builds del pipeline. Sin caché: build de 8 minutos. Con caché bien configurado: 90 segundos. Cómo exportar/importar caché en GitLab CI.</li>
+          <li><strong>Registries privados:</strong> GitLab Container Registry (integrado), Docker Hub, AWS ECR, GCP Artifact Registry. Cuándo usar cada uno. Autenticación con service accounts, no con credenciales personales.</li>
+          <li><strong>Imagen scanning:</strong> Trivy, Grype, Snyk. Escanear en el pipeline ANTES de subir al registry. Política: no permitir push si hay vulnerabilidades CRITICAL sin excepción explícita.</li>
+        </ul>
+        <div class="section-label">Ejercicios prácticos</div>
+        <ul class="practice-list">
+          <li>Refactorizar un Dockerfile existente a multi-stage: medir la reducción de tamaño</li>
+          <li>Integrar Trivy en un pipeline de GitLab: el job falla si hay CVEs críticos</li>
+          <li>Configurar caché de capas Docker en GitLab CI con registry como backend de caché</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag tag-tool">Docker</span>
+          <span class="tag tag-tool">BuildKit</span>
+          <span class="tag tag-tool">Trivy</span>
+          <span class="tag tag-warn">Registries</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- M4 -->
+    <div class="module-card">
+      <div class="module-header" onclick="toggleModule(this)">
+        <div class="module-num" style="background:#E6F1FB; color:#0C447C">M4</div>
+        <div class="module-title-block">
+          <div class="module-level" style="color:#185FA5">Intermedio · ~12h</div>
+          <div class="module-title">Diseño de pipelines CI/CD reales</div>
+          <div class="module-desc">Anatomía del pipeline, stages, jobs, artefactos, paralelismo, caching, testing y buenas prácticas de diseño.</div>
+        </div>
+        <div class="module-arrow">›</div>
+      </div>
+      <div class="module-body">
+        <div class="section-label">Conceptos teóricos en profundidad</div>
+        <ul class="concept-list">
+          <li><strong>Anatomía de un pipeline:</strong> Pipeline → Stages (ejecutan en secuencia) → Jobs (ejecutan en paralelo dentro del stage) → Steps/commands. El orden importa: fail fast primero. Tests unitarios antes que integración. Scan antes de push.</li>
+          <li><strong>El principio de fail fast:</strong> El primer stage debe ser el más barato y el que más frecuentemente falla: linting, formato, tests unitarios. No ejecutar un build de 10 minutos si el linter falla en 30 segundos.</li>
+          <li><strong>Testing en pipelines:</strong> Unit tests (aislados, rápidos, sin I/O), Integration tests (con dependencias reales o mocks pesados), Smoke tests (validar que el deploy funcionó: hit a /health endpoint). Cada capa tiene propósito diferente.</li>
+          <li><strong>Artefactos y dependencias entre jobs:</strong> Un job de build genera un binario/imagen. El job de deploy lo consume. No rebuildar en cada stage: pasar el artefacto. GitLab: artifacts: paths. GitHub Actions: upload-artifact/download-artifact.</li>
+          <li><strong>Environments y approvals:</strong> dev → staging → production. Promotion manual de staging a prod. Environments en GitLab con protección de rama. Evitar el anti-pattern: deploy a prod sin pasar por staging.</li>
+          <li><strong>Pipeline as Code:</strong> El .gitlab-ci.yml vive en el repo. Versiona junto al código. Permite reproducir exactamente el pipeline de hace 6 meses. Es la base de GitOps.</li>
+        </ul>
+        <div class="section-label">Buenas prácticas de la industria</div>
+        <ul class="concept-list">
+          <li>Tiempo máximo de pipeline: &lt;10 minutos para feedback rápido. Si tarda más, paralelizar o dividir.</li>
+          <li>Nunca usar credenciales hardcodeadas en el YAML. Siempre variables de entorno o secrets del CI.</li>
+          <li>Hacer idempotente cada stage: si el pipeline falla y se reejecutar, no debe haber efectos secundarios (no duplicar registros, no redeployar lo mismo dos veces).</li>
+        </ul>
+        <div class="section-label">Ejercicios prácticos</div>
+        <ul class="practice-list">
+          <li>Diseñar un pipeline para una API Node.js: lint → unit tests → build Docker → scan → push → deploy staging → smoke test → aprobación manual → deploy prod</li>
+          <li>Medir el tiempo de cada stage y optimizar el más lento usando paralelismo</li>
+          <li>Implementar un matrix job: correr tests en Node 18, 20 y 22 en paralelo</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag tag-tool">Pipeline design</span>
+          <span class="tag tag-tool">Testing</span>
+          <span class="tag tag-ok">Artifacts</span>
+          <span class="tag tag-warn">Fail fast</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- M5 -->
+    <div class="module-card">
+      <div class="module-header" onclick="toggleModule(this)">
+        <div class="module-num" style="background:#E6F1FB; color:#0C447C">M5</div>
+        <div class="module-title-block">
+          <div class="module-level" style="color:#185FA5">Intermedio · ~12h</div>
+          <div class="module-title">GitLab CI/CD en profundidad</div>
+          <div class="module-desc">Runners, includes, templates, variables, environments, releases. Comparativa con Jenkins y GitHub Actions.</div>
+        </div>
+        <div class="module-arrow">›</div>
+      </div>
+      <div class="module-body">
+        <div class="section-label">GitLab CI/CD — características clave</div>
+        <ul class="concept-list">
+          <li><strong>GitLab Runners:</strong> El agente que ejecuta los jobs. Shared runners (GitLab.com), group runners o específicos de proyecto. Executors: Docker (más limpio, aislado), Shell (más rápido, menos seguro), Kubernetes (escalable). Para producción: Docker executor en máquinas dedicadas.</li>
+          <li><strong>include y extends:</strong> include permite reutilizar configuración entre proyectos. extends hereda de templates locales. Clave para estandarizar pipelines en empresas con 50+ repos.</li>
+          <li><strong>Variables, secrets y environments:</strong> Variables a nivel de instancia, grupo y proyecto. Variables protegidas (solo en ramas protegidas). Variables enmascaradas (no aparecen en logs). Environments para separar prod de staging.</li>
+          <li><strong>Rules vs only/except:</strong> rules es el estándar moderno. Permite condiciones complejas: si es tag → deploy, si es MR → solo tests. only/except está deprecado.</li>
+          <li><strong>Releases y versioning:</strong> GitLab tiene API para crear releases automáticas desde el pipeline, con changelogs generados desde commits.</li>
+        </ul>
+        <div class="section-label">Comparativa de herramientas</div>
+        <div class="compare-grid">
+          <div class="compare-card featured">
+            <div class="compare-card-head">GitLab CI/CD</div>
+            <div class="compare-card-sub">Recomendado para empresas</div>
+            <ul class="compare-list">
+              <li>Todo integrado (git + CI + registry + k8s)</li>
+              <li>Configuración en YAML en el repo</li>
+              <li>Auto DevOps para proyectos estándar</li>
+              <li>Self-hosted o SaaS</li>
+              <li>Ideal: empresas que quieren plataforma única</li>
+            </ul>
+          </div>
+          <div class="compare-card">
+            <div class="compare-card-head">Jenkins</div>
+            <div class="compare-card-sub">Legacy, pero ubicuo</div>
+            <ul class="compare-list">
+              <li>Plugin ecosystem enorme</li>
+              <li>Jenkinsfile (Groovy) — curva alta</li>
+              <li>Requiere mantenimiento significativo</li>
+              <li>Flexible pero complejo</li>
+              <li>Ideal: empresas con infraestructura existente</li>
+            </ul>
+          </div>
+          <div class="compare-card">
+            <div class="compare-card-head">GitHub Actions</div>
+            <div class="compare-card-sub">Para repos en GitHub</div>
+            <ul class="compare-list">
+              <li>Marketplace de actions (reutilización)</li>
+              <li>YAML nativo, familiar</li>
+              <li>Integrado con GitHub (PRs, issues)</li>
+              <li>Self-hosted runners disponibles</li>
+              <li>Ideal: proyectos open source / startups</li>
+            </ul>
+          </div>
+        </div>
+        <div class="section-label">Ejercicios prácticos</div>
+        <ul class="practice-list">
+          <li>Instalar un GitLab Runner self-hosted con Docker executor y registrarlo en un proyecto</li>
+          <li>Crear un template YAML reutilizable con include y usarlo en 2 proyectos distintos</li>
+          <li>Migrar un Jenkinsfile simple a .gitlab-ci.yml equivalente</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag tag-tool">GitLab</span>
+          <span class="tag tag-tool">Jenkins</span>
+          <span class="tag tag-tool">GitHub Actions</span>
+          <span class="tag tag-warn">Runners</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- M6 -->
+    <div class="module-card">
+      <div class="module-header" onclick="toggleModule(this)">
+        <div class="module-num" style="background:#FAEEDA; color:#633806">M6</div>
+        <div class="module-title-block">
+          <div class="module-level" style="color:#BA7517">Avanzado · ~14h</div>
+          <div class="module-title">Kubernetes: deploy, rollout y rollback</div>
+          <div class="module-desc">Deployments, Services, Ingress, ConfigMaps, Secrets, rollouts estratégicos y rollbacks seguros en CI/CD.</div>
+        </div>
+        <div class="module-arrow">›</div>
+      </div>
+      <div class="module-body">
+        <div class="section-label">Conceptos teóricos en profundidad</div>
+        <ul class="concept-list">
+          <li><strong>Deployment vs Pod:</strong> Nunca deployar Pods directamente. Un Deployment define el estado deseado y Kubernetes reconcilia. Si un pod muere, el controller lo recrea. En CI/CD: el pipeline actualiza la imagen en el Deployment, k8s hace el rollout.</li>
+          <li><strong>Rolling Update:</strong> Estrategia por defecto. Actualiza pods gradualmente (maxSurge, maxUnavailable). Zero downtime si el readinessProbe está bien configurado. Sin readinessProbe: el tráfico va a pods que no están listos → errores.</li>
+          <li><strong>Rollback automático:</strong> kubectl rollout undo deployment/myapp. Kubernetes guarda historial de revisiones (revisionHistoryLimit). En GitOps (ArgoCD), el rollback es un git revert, no un comando kubectl.</li>
+          <li><strong>ConfigMaps y Secrets:</strong> ConfigMap para configuración no sensible. Secret para credenciales (base64, no cifrado real). Para producción: External Secrets Operator + Vault/AWS Secrets Manager. Nunca secrets en el repo Git.</li>
+          <li><strong>Health probes:</strong> livenessProbe (reiniciar si unhealthy), readinessProbe (sacar del Service si no está listo), startupProbe (dar tiempo al arranque). Mal configuradas: causa outages durante deploys.</li>
+          <li><strong>Despliegues progresivos:</strong> Canary (10% tráfico a nueva versión), Blue/Green (dos entornos completos, switch instantáneo). Implementación en k8s puro o con Argo Rollouts.</li>
+        </ul>
+        <div class="section-label">Ejercicios prácticos</div>
+        <ul class="practice-list">
+          <li>Deployer una app con Deployment + Service + Ingress en kind local</li>
+          <li>Simular un fallo: deploy de imagen rota, ver que readinessProbe detiene el rollout, hacer rollback</li>
+          <li>Implementar un Canary deployment manual con dos Deployments y pesos en Ingress NGINX</li>
+        </ul>
+        <div class="warn-box">Error crítico: subir a producción un Deployment sin readinessProbe. El rolling update completa aunque la app esté crasheando, porque k8s no sabe que está rota. El resultado: downtime total, rollback de emergencia.</div>
+        <div class="tag-row">
+          <span class="tag tag-tool">Kubernetes</span>
+          <span class="tag tag-tool">kubectl</span>
+          <span class="tag tag-ok">Rolling Update</span>
+          <span class="tag tag-warn">Canary</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- M7 -->
+    <div class="module-card">
+      <div class="module-header" onclick="toggleModule(this)">
+        <div class="module-num" style="background:#FAEEDA; color:#633806">M7</div>
+        <div class="module-title-block">
+          <div class="module-level" style="color:#BA7517">Avanzado · ~10h</div>
+          <div class="module-title">GitOps con ArgoCD</div>
+          <div class="module-desc">El paradigma GitOps, separación de repos app/infra, sincronización declarativa y rollback como git revert.</div>
+        </div>
+        <div class="module-arrow">›</div>
+      </div>
+      <div class="module-body">
+        <div class="section-label">Conceptos teóricos en profundidad</div>
+        <ul class="concept-list">
+          <li><strong>GitOps — el paradigma:</strong> El estado deseado del cluster vive en Git. ArgoCD sincroniza continuamente el cluster con ese estado. Nadie aplica kubectl en producción manualmente. Toda modificación pasa por git commit → PR → merge → sync automático.</li>
+          <li><strong>Separación app repo vs config repo:</strong> El repo de la app tiene el código y el CI pipeline. Cuando CI termina (build + push de imagen), actualiza el config repo (manifiestos k8s con la nueva imagen tag). ArgoCD detecta el cambio en el config repo y sincroniza.</li>
+          <li><strong>ArgoCD Application y AppProject:</strong> Application define qué repo/path sincronizar con qué namespace. AppProject agrupa aplicaciones con políticas de seguridad (qué repos pueden deployar a qué namespaces).</li>
+          <li><strong>Sync policies:</strong> Manual (aprobación humana antes de aplicar) o Automatic (ArgoCD aplica inmediatamente). Self-heal: si alguien hace kubectl apply manualmente, ArgoCD revierte al estado del repo.</li>
+          <li><strong>Rollback en GitOps:</strong> No es kubectl rollout undo. Es git revert del commit que cambió la imagen tag, seguido de merge. ArgoCD detecta el cambio y sincroniza. El rollback es auditable, revisable, y revierte exactamente lo que el commit cambió.</li>
+          <li><strong>Kustomize y Helm con ArgoCD:</strong> ArgoCD soporta nativamente Kustomize (overlays por entorno), Helm charts y plain YAML. Para multi-entorno: un chart de Helm, valores diferentes por entorno (values-staging.yaml, values-prod.yaml).</li>
+        </ul>
+        <div class="section-label">Ejercicios prácticos</div>
+        <ul class="practice-list">
+          <li>Instalar ArgoCD en kind, crear una Application que apunte a un repo de manifiestos</li>
+          <li>Implementar el flujo completo: CI actualiza imagen tag en config repo → ArgoCD sincroniza automáticamente</li>
+          <li>Simular un rollback GitOps: git revert + merge, verificar que ArgoCD revierte el cluster</li>
+        </ul>
+        <div class="ok-box">Buena práctica: mantener el config repo con estructura por entorno: /envs/staging/ y /envs/production/. ArgoCD tiene una Application por entorno, cada una apuntando a su directorio.</div>
+        <div class="tag-row">
+          <span class="tag tag-tool">ArgoCD</span>
+          <span class="tag tag-tool">GitOps</span>
+          <span class="tag tag-tool">Kustomize</span>
+          <span class="tag tag-ok">Helm</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- M8 -->
+    <div class="module-card">
+      <div class="module-header" onclick="toggleModule(this)">
+        <div class="module-num" style="background:#FCEBEB; color:#791F1F">M8</div>
+        <div class="module-title-block">
+          <div class="module-level" style="color:#A32D2D">Experto · ~10h</div>
+          <div class="module-title">DevSecOps: seguridad integrada en el pipeline</div>
+          <div class="module-desc">SAST, DAST, dependency scanning, gestión de secrets, signing de imágenes y compliance automatizado.</div>
+        </div>
+        <div class="module-arrow">›</div>
+      </div>
+      <div class="module-body">
+        <div class="section-label">Conceptos teóricos en profundidad</div>
+        <ul class="concept-list">
+          <li><strong>SAST (Static Application Security Testing):</strong> Análisis del código fuente sin ejecutarlo. Detecta: SQL injection, XSS, hardcoded secrets, uso de funciones inseguras. Herramientas: Semgrep (reglas personalizables), SonarQube, Bandit (Python), Gosec (Go). Se integra como job en el pipeline, falla si hay hallazgos críticos.</li>
+          <li><strong>DAST (Dynamic Application Security Testing):</strong> Ataca la app en ejecución. Detecta vulnerabilidades de runtime que SAST no ve (autenticación rota, headers faltantes). OWASP ZAP en modo CI. Se ejecuta contra el entorno de staging, no producción.</li>
+          <li><strong>Dependency scanning:</strong> Las dependencias son el mayor vector de vulnerabilidad (Log4Shell, eventos NPM maliciosos). GitLab tiene dependency scanning nativo. OWASP Dependency-Check para Java. Snyk para múltiples ecosistemas. Política: bloquear si hay CVE CRITICAL en dependencias directas.</li>
+          <li><strong>Gestión de secrets en CI:</strong> Nunca en variables de entorno en texto plano en el YAML. Niveles: (1) Variables del CI encriptadas, (2) Vault (HashiCorp) con AppRole auth, (3) External Secrets Operator + cloud secrets manager. Secret scanning: detect-secrets, GitLeaks para detectar secrets accidentalmente commiteados.</li>
+          <li><strong>Container signing:</strong> Cosign + Sigstore. Firmar la imagen al buildear. Verificar la firma antes de deployar. Policy controller (Kyverno, OPA Gatekeeper) rechaza imágenes sin firma válida en el cluster.</li>
+          <li><strong>Observabilidad en pipelines:</strong> Métricas de pipeline: duración, tasa de fallo, frecuencia. OpenTelemetry para tracing de pipelines. Alertas cuando el pipeline falla más del X% en 24h. Dashboard de salud de pipelines en Grafana.</li>
+        </ul>
+        <div class="section-label">Ejercicios prácticos</div>
+        <ul class="practice-list">
+          <li>Integrar Semgrep en GitLab CI: crear reglas custom para detectar patrones inseguros en el código del equipo</li>
+          <li>Configurar GitLeaks como job de pre-pipeline: detección de secrets en el historial del repo</li>
+          <li>Implementar Cosign: firmar imagen en CI, verificar firma con Kyverno en k8s</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag tag-err">SAST</span>
+          <span class="tag tag-err">DAST</span>
+          <span class="tag tag-tool">Semgrep</span>
+          <span class="tag tag-tool">Cosign</span>
+          <span class="tag tag-warn">Secrets</span>
+        </div>
+      </div>
+    </div>
+    <button class="ask-btn" onclick="sendPrompt('Explícame en detalle el módulo 7 de GitOps con ArgoCD con ejemplos de configuración YAML completos')">Profundizar en un módulo ↗</button>
+  </div>
+
+  <!-- LABORATORIO -->
+  <div id="tab-lab" class="tab-panel">
+    <div class="lab-section">
+      <div class="lab-title">
+        <span style="font-size:16px">Arquitectura del laboratorio local</span>
+        <span class="duration-badge">Recursos limitados</span>
+      </div>
+      <div class="info-box">Diseñado para correr en una laptop con 8GB RAM y 4 CPU cores. Uso estimado: ~4GB RAM, ~20GB disco.</div>
+      <div class="arch-grid">
+        <div class="arch-card">
+          <div class="arch-card-title">k3d</div>
+          <div class="arch-card-desc">Kubernetes ligero (k3s en Docker). 1 control-plane + 2 workers. Usa ~800MB RAM. Alternativa a minikube.</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-card-title">GitLab CE (alternativa)</div>
+          <div class="arch-card-desc">Si los recursos no alcanzan: Gitea + Forgejo como alternativa. O usar GitLab.com (free tier) con runner local.</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-card-title">ArgoCD</div>
+          <div class="arch-card-desc">Instalado en el cluster k3d. Namespace: argocd. Acceso via port-forward o Ingress local.</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-card-title">Registry local</div>
+          <div class="arch-card-desc">Docker Registry v2 local (registry:2). k3d configurado para trust sin TLS. Evita push a Docker Hub.</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-card-title">NGINX Ingress</div>
+          <div class="arch-card-desc">Ingress controller en el cluster. Expone servicios en localhost via port 80/443.</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-card-title">GitLab Runner</div>
+          <div class="arch-card-desc">Runner en Docker en el host (no en k3d). Docker-in-Docker para builds de imágenes.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lab-section">
+      <div class="lab-title">Flujo CI/CD del laboratorio</div>
+      <div class="flow-row">
+        <div class="flow-box" style="background:var(--color-background-info); color:var(--color-text-info)">git push</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">GitLab CI trigger</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box" style="background:var(--color-background-success); color:var(--color-text-success)">lint + tests</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">docker build</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">trivy scan</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box" style="background:var(--color-background-warning); color:var(--color-text-warning)">push registry</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">update image tag en config repo</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box" style="background:var(--color-background-info); color:var(--color-text-info)">ArgoCD sync</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box" style="background:var(--color-background-success); color:var(--color-text-success)">k8s deploy</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">smoke test</div>
+      </div>
+    </div>
+
+    <div class="lab-section">
+      <div class="lab-title">Paso a paso: montar el laboratorio</div>
+      <ol class="step-list">
+        <li><strong>Instalar prerequisitos:</strong> Docker Desktop (o Docker Engine en Linux), kubectl, k3d CLI, helm, argocd CLI. En macOS: brew install k3d kubectl helm argocd</li>
+        <li><strong>Crear registry local:</strong> docker run -d --name registry -p 5000:5000 registry:2</li>
+        <li><strong>Crear cluster k3d con registry:</strong> k3d cluster create lab --servers 1 --agents 2 --registry-use k3d-registry.localhost:5000 -p "80:80@loadbalancer" -p "443:443@loadbalancer"</li>
+        <li><strong>Instalar NGINX Ingress:</strong> helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx && helm install ingress-nginx ingress-nginx/ingress-nginx -n ingress-nginx --create-namespace</li>
+        <li><strong>Instalar ArgoCD:</strong> kubectl create namespace argocd && kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml</li>
+        <li><strong>Obtener password inicial de ArgoCD:</strong> argocd admin initial-password -n argocd</li>
+        <li><strong>Configurar GitLab CI runner:</strong> docker run -d --name gitlab-runner --restart always -v /var/run/docker.sock:/var/run/docker.sock gitlab/gitlab-runner:latest — luego registrar con token del proyecto</li>
+        <li><strong>Clonar proyecto ejemplo:</strong> git clone https://github.com/tu-usuario/lab-cicd-app — o crear uno nuevo: Express.js API simple con /health y /api/items endpoints</li>
+        <li><strong>Crear repos:</strong> app-repo (código + .gitlab-ci.yml) y config-repo (manifiestos k8s de la app)</li>
+        <li><strong>Crear ArgoCD Application:</strong> apuntando al config-repo, namespace default, auto-sync habilitado</li>
+        <li><strong>Hacer primer commit en app-repo:</strong> el pipeline debe ejecutarse end-to-end y el cluster quedar con la app running</li>
+        <li><strong>Verificar:</strong> curl http://localhost/health — debe devolver 200 OK con {"status":"ok"}</li>
+      </ol>
+    </div>
+
+    <div class="lab-section">
+      <div class="lab-title">Escenarios prácticos del laboratorio</div>
+      <ol class="step-list">
+        <li><strong>Fallo de pipeline:</strong> introducir un test que falla → pipeline se detiene, deploy no ocurre → corregir → pipeline verde → deploy</li>
+        <li><strong>Rollback GitOps:</strong> deployar imagen rota (app que crashea) → ArgoCD detecta pods crasheando (si usas Argo Rollouts) → git revert del commit de imagen → ArgoCD sincroniza → cluster vuelve a versión anterior</li>
+        <li><strong>Cambio de configuración:</strong> cambiar una variable de entorno en el ConfigMap del config-repo → ArgoCD detecta OutOfSync → sincroniza → pods se reinician con nueva config</li>
+        <li><strong>Despliegue progresivo:</strong> instalar Argo Rollouts → cambiar Deployment a Rollout con estrategia Canary (10% → 25% → 50% → 100%) → deployar nueva versión → observar el progreso → aprobar manualmente cada fase</li>
+        <li><strong>Scan de seguridad con fallo:</strong> introducir una dependencia con CVE conocido → Trivy falla el pipeline → pipeline se detiene antes del push → corregir dependencia → pipeline verde</li>
+      </ol>
+    </div>
+    <button class="ask-btn" onclick="sendPrompt('Dame el paso a paso completo y detallado para instalar ArgoCD en k3d y conectarlo con un repositorio de GitLab')">Expandir guía de instalación ↗</button>
+  </div>
+
+  <!-- PIPELINES YAML -->
+  <div id="tab-pipelines" class="tab-panel">
+    <div class="lab-section">
+      <div class="lab-title">Pipeline completo — .gitlab-ci.yml</div>
+      <div class="code-block">
+<span class="c-gray"># .gitlab-ci.yml — Pipeline completo CI/CD</span>
+<span class="c-gray"># App: microservicio Node.js | Target: Kubernetes via ArgoCD</span>
+
+<span class="c-blue">stages</span>:
+  - validate
+  - test
+  - build
+  - security
+  - publish
+  - deploy
+
+<span class="c-blue">variables</span>:
+  <span class="c-orange">REGISTRY</span>: <span class="c-green">"registry.gitlab.com/$CI_PROJECT_PATH"</span>
+  <span class="c-orange">IMAGE_TAG</span>: <span class="c-green">"$CI_COMMIT_SHORT_SHA"</span>
+  <span class="c-orange">CONFIG_REPO</span>: <span class="c-green">"https://gitlab.com/myorg/config-repo.git"</span>
+  <span class="c-orange">K8S_NAMESPACE</span>: <span class="c-green">"production"</span>
+  <span class="c-orange">DOCKER_BUILDKIT</span>: <span class="c-green">"1"</span>
+
+<span class="c-gray"># ── STAGE: VALIDATE ──────────────────────────────────</span>
+
+<span class="c-purple">lint</span>:
+  <span class="c-blue">stage</span>: validate
+  <span class="c-blue">image</span>: node:20-alpine
+  <span class="c-blue">cache</span>:
+    <span class="c-blue">key</span>: <span class="c-green">"$CI_COMMIT_REF_SLUG"</span>
+    <span class="c-blue">paths</span>: [node_modules/]
+  <span class="c-blue">script</span>:
+    - npm ci --prefer-offline
+    - npm run lint
+    - npm run format:check
+  <span class="c-blue">rules</span>:
+    - <span class="c-blue">when</span>: always
+
+<span class="c-gray"># ── STAGE: TEST ──────────────────────────────────────</span>
+
+<span class="c-purple">unit-tests</span>:
+  <span class="c-blue">stage</span>: test
+  <span class="c-blue">image</span>: node:20-alpine
+  <span class="c-blue">cache</span>:
+    <span class="c-blue">key</span>: <span class="c-green">"$CI_COMMIT_REF_SLUG"</span>
+    <span class="c-blue">paths</span>: [node_modules/]
+    <span class="c-blue">policy</span>: pull
+  <span class="c-blue">script</span>:
+    - npm ci --prefer-offline
+    - npm run test:unit -- --coverage
+  <span class="c-blue">coverage</span>: <span class="c-green">'/All files[^|]*\|[^|]*\s+([\d\.]+)/'</span>
+  <span class="c-blue">artifacts</span>:
+    <span class="c-blue">reports</span>:
+      <span class="c-blue">coverage_report</span>:
+        <span class="c-blue">coverage_format</span>: cobertura
+        <span class="c-blue">path</span>: coverage/cobertura-coverage.xml
+    <span class="c-blue">expire_in</span>: 7 days
+  <span class="c-blue">rules</span>:
+    - <span class="c-blue">when</span>: always
+
+<span class="c-purple">integration-tests</span>:
+  <span class="c-blue">stage</span>: test
+  <span class="c-blue">image</span>: node:20-alpine
+  <span class="c-blue">services</span>:
+    - <span class="c-blue">name</span>: postgres:15-alpine
+      <span class="c-blue">alias</span>: db
+  <span class="c-blue">variables</span>:
+    <span class="c-orange">DATABASE_URL</span>: <span class="c-green">"postgresql://user:pass@db:5432/testdb"</span>
+    <span class="c-orange">POSTGRES_DB</span>: testdb
+    <span class="c-orange">POSTGRES_USER</span>: user
+    <span class="c-orange">POSTGRES_PASSWORD</span>: pass
+  <span class="c-blue">script</span>:
+    - npm ci --prefer-offline
+    - npm run db:migrate:test
+    - npm run test:integration
+  <span class="c-blue">rules</span>:
+    - <span class="c-blue">if</span>: <span class="c-green">$CI_COMMIT_BRANCH == "main"</span>
+    - <span class="c-blue">if</span>: <span class="c-green">$CI_PIPELINE_SOURCE == "merge_request_event"</span>
+
+<span class="c-gray"># ── STAGE: BUILD ─────────────────────────────────────</span>
+
+<span class="c-purple">docker-build</span>:
+  <span class="c-blue">stage</span>: build
+  <span class="c-blue">image</span>: docker:24-dind
+  <span class="c-blue">services</span>:
+    - docker:24-dind
+  <span class="c-blue">variables</span>:
+    <span class="c-orange">DOCKER_TLS_CERTDIR</span>: <span class="c-green">"/certs"</span>
+  <span class="c-blue">before_script</span>:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  <span class="c-blue">script</span>:
+    - |
+      docker build
+        --cache-from $REGISTRY:cache
+        --build-arg BUILDKIT_INLINE_CACHE=1
+        --tag $REGISTRY:$IMAGE_TAG
+        --tag $REGISTRY:latest
+        .
+    - docker push $REGISTRY:$IMAGE_TAG
+    - docker push $REGISTRY:cache
+  <span class="c-blue">artifacts</span>:
+    <span class="c-blue">reports</span>:
+      <span class="c-blue">dotenv</span>: build.env
+  <span class="c-blue">rules</span>:
+    - <span class="c-blue">if</span>: <span class="c-green">$CI_COMMIT_BRANCH == "main"</span>
+
+<span class="c-gray"># ── STAGE: SECURITY ──────────────────────────────────</span>
+
+<span class="c-purple">trivy-scan</span>:
+  <span class="c-blue">stage</span>: security
+  <span class="c-blue">image</span>:
+    <span class="c-blue">name</span>: aquasec/trivy:latest
+    <span class="c-blue">entrypoint</span>: [""]
+  <span class="c-blue">script</span>:
+    - trivy image
+        --exit-code 1
+        --severity CRITICAL
+        --no-progress
+        $REGISTRY:$IMAGE_TAG
+  <span class="c-blue">allow_failure</span>: false
+  <span class="c-blue">rules</span>:
+    - <span class="c-blue">if</span>: <span class="c-green">$CI_COMMIT_BRANCH == "main"</span>
+
+<span class="c-purple">semgrep-sast</span>:
+  <span class="c-blue">stage</span>: security
+  <span class="c-blue">image</span>: semgrep/semgrep
+  <span class="c-blue">script</span>:
+    - semgrep --config=auto --error --json > semgrep-report.json
+  <span class="c-blue">artifacts</span>:
+    <span class="c-blue">paths</span>: [semgrep-report.json]
+    <span class="c-blue">when</span>: always
+    <span class="c-blue">expire_in</span>: 30 days
+  <span class="c-blue">rules</span>:
+    - <span class="c-blue">when</span>: always
+
+<span class="c-gray"># ── STAGE: PUBLISH ───────────────────────────────────</span>
+
+<span class="c-purple">update-config-repo</span>:
+  <span class="c-blue">stage</span>: publish
+  <span class="c-blue">image</span>: alpine/git:latest
+  <span class="c-blue">script</span>:
+    - git config --global user.email "ci@company.com"
+    - git config --global user.name "GitLab CI"
+    - git clone $CONFIG_REPO config-repo
+    - cd config-repo
+    - |
+      <span class="c-gray"># Actualizar image tag en el manifest de Kustomize</span>
+      sed -i "s|image: $REGISTRY:.*|image: $REGISTRY:$IMAGE_TAG|g"
+        envs/production/kustomization.yaml
+    - git add .
+    - git commit -m "chore: update image to $IMAGE_TAG [skip ci]"
+    - git push
+  <span class="c-blue">rules</span>:
+    - <span class="c-blue">if</span>: <span class="c-green">$CI_COMMIT_BRANCH == "main"</span>
+
+<span class="c-gray"># ── STAGE: DEPLOY ─────────────────────────────────────</span>
+
+<span class="c-purple">smoke-test</span>:
+  <span class="c-blue">stage</span>: deploy
+  <span class="c-blue">image</span>: curlimages/curl:latest
+  <span class="c-blue">script</span>:
+    - sleep 30  <span class="c-gray"># esperar que ArgoCD sincronice</span>
+    - curl --fail --retry 5 --retry-delay 10
+        https://myapp.company.com/health
+  <span class="c-blue">environment</span>:
+    <span class="c-blue">name</span>: production
+    <span class="c-blue">url</span>: https://myapp.company.com
+  <span class="c-blue">rules</span>:
+    - <span class="c-blue">if</span>: <span class="c-green">$CI_COMMIT_BRANCH == "main"</span>
+</div>
+    </div>
+
+    <div class="lab-section">
+      <div class="lab-title">Manifiesto Kubernetes — Deployment</div>
+      <div class="code-block">
+<span class="c-gray"># config-repo/envs/production/deployment.yaml</span>
+<span class="c-blue">apiVersion</span>: apps/v1
+<span class="c-blue">kind</span>: Deployment
+<span class="c-blue">metadata</span>:
+  <span class="c-blue">name</span>: myapp
+  <span class="c-blue">namespace</span>: production
+  <span class="c-blue">labels</span>:
+    <span class="c-blue">app</span>: myapp
+    <span class="c-blue">version</span>: <span class="c-green">"1.0"</span>
+<span class="c-blue">spec</span>:
+  <span class="c-blue">replicas</span>: 3
+  <span class="c-blue">strategy</span>:
+    <span class="c-blue">type</span>: RollingUpdate
+    <span class="c-blue">rollingUpdate</span>:
+      <span class="c-blue">maxSurge</span>: 1
+      <span class="c-blue">maxUnavailable</span>: 0  <span class="c-gray"># zero downtime</span>
+  <span class="c-blue">selector</span>:
+    <span class="c-blue">matchLabels</span>:
+      <span class="c-blue">app</span>: myapp
+  <span class="c-blue">template</span>:
+    <span class="c-blue">metadata</span>:
+      <span class="c-blue">labels</span>:
+        <span class="c-blue">app</span>: myapp
+    <span class="c-blue">spec</span>:
+      <span class="c-blue">containers</span>:
+        - <span class="c-blue">name</span>: myapp
+          <span class="c-blue">image</span>: registry.gitlab.com/myorg/myapp:abc1234
+          <span class="c-blue">ports</span>:
+            - <span class="c-blue">containerPort</span>: 3000
+          <span class="c-blue">resources</span>:
+            <span class="c-blue">requests</span>:
+              <span class="c-blue">memory</span>: <span class="c-green">"128Mi"</span>
+              <span class="c-blue">cpu</span>: <span class="c-green">"100m"</span>
+            <span class="c-blue">limits</span>:
+              <span class="c-blue">memory</span>: <span class="c-green">"256Mi"</span>
+              <span class="c-blue">cpu</span>: <span class="c-green">"500m"</span>
+          <span class="c-blue">readinessProbe</span>:
+            <span class="c-blue">httpGet</span>:
+              <span class="c-blue">path</span>: /health
+              <span class="c-blue">port</span>: 3000
+            <span class="c-blue">initialDelaySeconds</span>: 10
+            <span class="c-blue">periodSeconds</span>: 5
+            <span class="c-blue">failureThreshold</span>: 3
+          <span class="c-blue">livenessProbe</span>:
+            <span class="c-blue">httpGet</span>:
+              <span class="c-blue">path</span>: /health
+              <span class="c-blue">port</span>: 3000
+            <span class="c-blue">initialDelaySeconds</span>: 30
+            <span class="c-blue">periodSeconds</span>: 10
+          <span class="c-blue">envFrom</span>:
+            - <span class="c-blue">configMapRef</span>:
+                <span class="c-blue">name</span>: myapp-config
+            - <span class="c-blue">secretRef</span>:
+                <span class="c-blue">name</span>: myapp-secrets
+</div>
+    </div>
+    <button class="ask-btn" onclick="sendPrompt('Dame un ejemplo completo de ArgoCD Application YAML y kustomization.yaml para el config repo del laboratorio')">Ver manifiestos ArgoCD ↗</button>
+  </div>
+
+  <!-- HERRAMIENTAS -->
+  <div id="tab-herramientas" class="tab-panel">
+    <div class="lab-section">
+      <div class="lab-title">Stack de herramientas del curso</div>
+      <div class="arch-grid">
+        <div class="arch-card">
+          <div class="arch-card-title" style="color:#185FA5">GitLab CI/CD</div>
+          <div class="arch-card-desc">Herramienta principal. Pipelines as code en .gitlab-ci.yml. Integración nativa con registry, k8s, secrets.</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-card-title">Docker + BuildKit</div>
+          <div class="arch-card-desc">Multi-stage builds, caché optimizado, build args para reproducibilidad. Trivy para scanning.</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-card-title" style="color:#BA7517">k3d</div>
+          <div class="arch-card-desc">Kubernetes local ligero. Cluster completo en Docker. Ideal para recursos limitados. Alternativa: minikube.</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-card-title" style="color:#1D9E75">ArgoCD</div>
+          <div class="arch-card-desc">GitOps controller. Sincroniza el cluster con el estado en Git. UI web + CLI. App of Apps pattern.</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-card-title">Semgrep + Trivy</div>
+          <div class="arch-card-desc">SAST de código fuente (Semgrep) y scanning de imágenes (Trivy). Ambos se integran como jobs en el pipeline.</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-card-title">Helm + Kustomize</div>
+          <div class="arch-card-desc">Helm para templating complejo. Kustomize para overlays por entorno. ArgoCD soporta ambos nativamente.</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-card-title">Argo Rollouts</div>
+          <div class="arch-card-desc">Despliegues Canary y Blue/Green avanzados en Kubernetes. Analysis runs para rollback automático.</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-card-title">Grafana + Loki</div>
+          <div class="arch-card-desc">Observabilidad de pipelines y apps. Logs de jobs, métricas de deployments, alertas de fallo.</div>
+        </div>
+      </div>
+    </div>
+    <div class="warn-box">No instalar todo a la vez. El laboratorio tiene un orden: Docker → k3d → ArgoCD → Runner → primer pipeline → luego herramientas adicionales.</div>
+    <button class="ask-btn" onclick="sendPrompt('¿Cuándo debo usar Argo Rollouts vs un Rolling Update estándar de Kubernetes? Dame ejemplos de casos de uso reales')">Comparar herramientas de deploy ↗</button>
+  </div>
+</div>
+
+<script>
+function switchTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function toggleModule(header) {
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('.module-arrow');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  arrow.classList.toggle('open', !isOpen);
+}
+</script>
